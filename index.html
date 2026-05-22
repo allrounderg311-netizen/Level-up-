@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>SystemOS</title>
+
+<link rel="stylesheet"
+href="style.css">
+
+</head>
+
+<body>
+
+<div class="app">
+
+<!-- HOME PAGE -->
+
+<div id="homePage">
+
+<div class="top">
+
+<div>
+
+<p class="smallText">
+SYSTEM STATUS
+</p>
+
+<h1 id="level">
+LEVEL 1
+</h1>
+
+<p id="xpText">
+XP 0 / 100
+</p>
+
+<div class="ringWrap">
+
+<div class="ring">
+
+<svg width="120"
+height="120">
+
+<circle
+cx="60"
+cy="60"
+r="52"
+stroke="#1a1a1a"
+stroke-width="8"
+fill="none"
+/>
+
+<circle
+id="progressRing"
+cx="60"
+cy="60"
+r="52"
+stroke="white"
+stroke-width="8"
+fill="none"
+stroke-linecap="round"
+/>
+
+</svg>
+
+<div class="ringText">
+
+<p id="readinessValue">
+20%
+</p>
+
+<span>
+READINESS
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="statusBox"
+id="dayBox">
+
+DAY 01
+
+</div>
+
+</div>
+
+<div class="heroCard">
+
+<p class="smallText">
+CURRENT OBJECTIVE
+</p>
+
+<p id="missionType">
+ADAPTIVE MISSION
+</p>
+
+<h2 id="missionText">
+
+Awaiting mission generation.
+
+</h2>
+
+<div class="buttonGroup">
+
+<button onclick="generateMission()">
+Generate
+</button>
+
+<button onclick="completeMission()">
+Complete
+</button>
+
+<button onclick="softReset()">
+Soft Reset
+</button>
+
+<button onclick="fullReset()">
+Full Reset
+</button>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="cardTop">
+
+<p class="smallText">
+MASTERY
+</p>
+
+<p class="smallText">
+SYSTEM CORE
+</p>
+
+</div>
+
+<div class="mastery">
+
+<div class="masteryText">
+<p>Strength</p>
+<span id="strengthText">20%</span>
+</div>
+
+<div class="bar">
+<div id="strengthBar"
+class="fill"></div>
+</div>
+
+</div>
+
+<div class="mastery">
+
+<div class="masteryText">
+<p>Endurance</p>
+<span id="enduranceText">20%</span>
+</div>
+
+<div class="bar">
+<div id="enduranceBar"
+class="fill"></div>
+</div>
+
+</div>
+
+<div class="mastery">
+
+<div class="masteryText">
+<p>Mobility</p>
+<span id="mobilityText">20%</span>
+</div>
+
+<div class="bar">
+<div id="mobilityBar"
+class="fill"></div>
+</div>
+
+</div>
+
+<div class="mastery">
+
+<div class="masteryText">
+<p>Recovery</p>
+<span id="recoveryText">20%</span>
+</div>
+
+<div class="bar">
+<div id="recoveryBar"
+class="fill"></div>
+</div>
+
+</div>
+
+<div class="mastery">
+
+<div class="masteryText">
+<p>Focus</p>
+<span id="focusText">20%</span>
+</div>
+
+<div class="bar">
+<div id="focusBar"
+class="fill"></div>
+</div>
+
+</div>
+
+<div class="mastery">
+
+<div class="masteryText">
+<p>Knowledge</p>
+<span id="knowledgeText">20%</span>
+</div>
+
+<div class="bar">
+<div id="knowledgeBar"
+class="fill"></div>
+</div>
+
+</div>
+
+<div class="mastery">
+
+<div class="masteryText">
+<p>Discipline</p>
+<span id="disciplineText">20%</span>
+</div>
+
+<div class="bar">
+<div id="disciplineBar"
+class="fill"></div>
+</div>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<p class="smallText">
+SYSTEM ANALYSIS
+</p>
+
+<p id="analysis">
+System stable.
+</p>
+
+</div>
+
+</div>
+
+
+
+<!-- MISSIONS PAGE -->
+
+<div id="missionsPage"
+style="display:none;">
+
+<div class="card">
+
+<p class="smallText">
+DAILY QUESTS
+</p>
+
+<div class="quest">
+
+<p>
+Complete 1 Mission
+</p>
+
+<span id="dailyQuest1Status">
+INCOMPLETE
+</span>
+
+</div>
+
+<div class="quest">
+
+<p>
+Gain 50 XP
+</p>
+
+<span id="dailyQuest2Status">
+INCOMPLETE
+</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<p class="smallText">
+BOSS QUEST
+</p>
+
+<div class="quest">
+
+<p>
+Reach 50% Readiness
+</p>
+
+<span id="bossQuestStatus">
+LOCKED
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- STATS PAGE -->
+
+<div id="statsPage"
+style="display:none;">
+
+<div class="card">
+
+<p class="smallText">
+SYSTEM STATS
+</p>
+
+<p id="statsInfo">
+
+No analytics yet.
+
+</p>
+
+</div>
+
+</div>
+
+
+
+<!-- AI PAGE -->
+
+<div id="aiPage"
+style="display:none;">
+
+<div class="card">
+
+<p class="smallText">
+AI SYSTEM
+</p>
+
+<textarea
+id="aiInput"
+placeholder="Ask AI..."
+></textarea>
+
+<button onclick="realAI()">
+Analyze
+</button>
+
+<p id="aiResponse">
+
+AI awaiting input.
+
+</p>
+
+</div>
+
+</div>
+
+
+
+<!-- NAV -->
+
+<div class="bottomNav">
+
+<div
+class="navItem active"
+onclick="showSection('home')">
+
+HOME
+
+</div>
+
+<div
+class="navItem"
+onclick="showSection('missions')">
+
+MISSIONS
+
+</div>
+
+<div
+class="navItem"
+onclick="showSection('stats')">
+
+STATS
+
+</div>
+
+<div
+class="navItem"
+onclick="showSection('ai')">
+
+AI
+
+</div>
+
+</div>
+
+</div>
+
+<script src="script.js"></script>
+
+<script src="ai.js"></script>
+
+</body>
+</html>
